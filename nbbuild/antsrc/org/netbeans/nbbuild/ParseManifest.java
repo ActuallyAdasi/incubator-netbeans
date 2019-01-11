@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -72,15 +72,12 @@ public class ParseManifest extends Task {
             throw new BuildException("Must specify parameter 'attribute'.");
         }
         try {
-            BufferedInputStream is = new BufferedInputStream(new FileInputStream(manifest));
-            try {
+            try (BufferedInputStream is = new BufferedInputStream(new FileInputStream(manifest))) {
                 Manifest mf = new Manifest(is);
                 String attr = mf.getMainAttributes().getValue(attribute);
                 if (attr == null)
                     return;
                 getProject().setProperty(property, attr);
-            } finally {
-                is.close();
             }
         } catch (Exception x) {
             throw new BuildException("Reading manifest " + manifest + ": " + x, x, getLocation());

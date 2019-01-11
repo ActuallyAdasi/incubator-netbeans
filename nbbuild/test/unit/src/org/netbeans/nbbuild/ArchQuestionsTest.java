@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -37,7 +37,7 @@ import org.xml.sax.SAXException;
  */
 public class ArchQuestionsTest extends TestBase implements EntityResolver {
     /** debug messages to show if necessary */
-    private List<String> msg = new ArrayList<String>();
+    private List<String> msg = new ArrayList<>();
     
     public ArchQuestionsTest (String name) {
         super (name);

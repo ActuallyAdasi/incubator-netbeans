@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -71,8 +71,7 @@ public class CreateDependencies extends Task {
             try (InputStream in = new FileInputStream(new File(getProject().getProperty("nb_all"), "nbbuild/licenses/names.properties"))) {
                 licenseNames.load(in);
             }
-            OutputStream os = new FileOutputStream(dependencies);
-            try {
+            try (OutputStream os = new FileOutputStream(dependencies)) {
                 PrintWriter pw = new PrintWriter(new OutputStreamWriter(os, "UTF-8"));
                 pw.println("This project's dependencies");
                 pw.println();
@@ -100,6 +99,9 @@ public class CreateDependencies extends Task {
                     String licName = licenseNames.getProperty(licCode);
                     String licDesc = licName != null ? licName : licCode;
                     text.append("\nLicense: " + licDesc);
+                    if (headers.containsKey("Comment")) {
+                        text.append("\nComment: " + headers.get("Comment"));
+                    }
                     origin2Texts.computeIfAbsent(origin, o -> new TreeSet<>()).add(text.toString());
                 }
 
@@ -130,8 +132,6 @@ public class CreateDependencies extends Task {
                 }
                 pw.flush();
                 pw.close();
-            } finally {
-                os.close();
             }
             log(dependencies + ": written");
         } catch (IOException x) {

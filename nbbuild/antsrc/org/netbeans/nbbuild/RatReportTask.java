@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -147,7 +147,7 @@ public class RatReportTask extends Task {
                 modulebycluster.get(clusterName).add(amo);
             }
         }
-        modulebycluster.put(OTHERS_AREA, new HashSet<String>());
+        modulebycluster.put(OTHERS_AREA, new HashSet<>());
         for (String k : moduleDB) {
             modulebycluster.get(OTHERS_AREA).add(k);
         }

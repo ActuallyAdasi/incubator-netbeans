@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -115,7 +115,7 @@ public class CustomJavac extends Javac {
         if (!d.isDirectory()) {
             return;
         }
-        List<File> sources = new ArrayList<File>();
+        List<File> sources = new ArrayList<>();
         for (String s : getSrcdir().list()) {
             sources.add(new File(s));
         }

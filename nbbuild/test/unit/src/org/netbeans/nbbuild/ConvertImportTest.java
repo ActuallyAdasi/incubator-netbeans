@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -93,9 +93,9 @@ public class ConvertImportTest extends NbTestCase {
 
     private File createFile(String xml) throws IOException {
        testFile = new File(getWorkDir(),"testFile.xml");
-       PrintStream ps = new PrintStream(testFile);
-       ps.print(xml);
-       ps.close();
+        try (PrintStream ps = new PrintStream(testFile)) {
+            ps.print(xml);
+        }
        return testFile;
     }
 

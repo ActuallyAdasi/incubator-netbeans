@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -89,11 +89,8 @@ public class JUnitReportWriter {
             testsuite.setAttribute("failures", Integer.toString(failures));
             testsuite.setAttribute("tests", Integer.toString(pseudoTests.size()));
             try {
-                OutputStream os = new FileOutputStream(reportFile);
-                try {
+                try (OutputStream os = new FileOutputStream(reportFile)) {
                     XMLUtil.write(reportDoc, os);
-                } finally {
-                    os.close();
                 }
             } catch (IOException x) {
                 throw new BuildException("Could not write " + reportFile + ": " + x, x, task.getLocation());

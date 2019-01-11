@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -43,13 +43,13 @@ public class PrintIconTest extends TestBase {
                  break;
              }
         }
-        OutputStream os = new FileOutputStream(f);
-        InputStream is = PrintIconTest.class.getResourceAsStream(resource);
-        int c;
-        while ((c = is.read()) != -1) {
-            os.write(c);
+        try (OutputStream os = new FileOutputStream(f);
+                InputStream is = PrintIconTest.class.getResourceAsStream(resource)) {
+            int c;
+            while ((c = is.read()) != -1) {
+                os.write(c);
+            }
         }
-        os.close();
         return f;
     }
 

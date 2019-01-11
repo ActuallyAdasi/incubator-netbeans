@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -80,11 +80,7 @@ public final class ModuleStateSelector extends BaseExtendSelector {
         }
         try {
             return readConfig(getProject(), module, file);
-        } catch (SAXException ex) {
-            throw new BuildException(ex);
-        } catch (IOException ex) {
-            throw new BuildException(ex);
-        } catch (ParserConfigurationException ex) {
+        } catch (SAXException | IOException | ParserConfigurationException ex) {
             throw new BuildException(ex);
         }
     }
